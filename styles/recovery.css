@@ -1,0 +1,108 @@
+:root {
+  --bg: #f8f8f8;
+  --card: #ffffff;
+  --text: #111;
+  --accent: #7dd3fc;
+  --shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.dashboard-layout {
+  display: grid;
+  grid-template-areas:
+    "habits journal"
+    "chatbot reminder";
+  grid-template-columns: 2fr 1.5fr;
+  grid-template-rows: 3fr 1.2fr;
+  gap: 2rem;
+  padding: 2rem;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+/* === Habits & Long-Term === */
+.habits-card {
+  grid-area: habits;
+  background: var(--card);
+  border: 2px solid black;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  overflow-y: auto;
+}
+
+.habits-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.habits-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.habits-card li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+/* === Journal Box === */
+.journal-box {
+  grid-area: journal;
+  background: var(--card);
+  border: 2px solid black;
+  border-radius: 2rem;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.journal-box h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.journal-box textarea {
+  flex: 1;
+  border: none;
+  border-top: 1px solid #ccc;
+  resize: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  background-color: #f0f0f0;
+}
+
+/* === Reminder Circle === */
+.reminder-circle {
+  grid-area: reminder;
+  width: 150px;
+  height: 150px;
+  border: 3px solid black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-align: center;
+  margin: auto;
+  background-color: white;
+  box-shadow: var(--shadow);
+}
+
+/* === Chatbot === */
+.chatbot-box {
+  grid-area: chatbot;
+  background: var(--card);
+  border: 2px solid black;
+  border-radius: 2rem;
+  padding: 1rem 1.5rem;
+  box-shadow: var(--shadow);
+}

@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About You – Hephaestus</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/aboutme.css">
+ 
+</head>
+<body>
+  <div class="container">
+    <section class="form-section show">
+      <h2>Let's start with your story.</h2>
+      <p>This is private. You can write as much or as little as you want.</p>
+
+      <label for="lifeChange">Did something in your life change recently?</label>
+      <textarea id="lifeChange" placeholder="For example: a fall, illness, injury, or diagnosis..." rows="5"></textarea>
+
+      <label for="impact">How has this change affected your physical or mental ability?</label>
+      <textarea id="impact" placeholder="I can't move like I used to, I forget things more, I feel tired faster..." rows="5"></textarea>
+
+      <button onclick="nextSection()">Next</button>
+    </section>
+
+    <section class="form-section">
+      <h2>What do you want to get back to doing?</h2>
+      <label for="goals">What are you hoping to rebuild or regain?</label>
+      <textarea id="goals" placeholder="Walking outside, cooking, holding a conversation..." rows="4"></textarea>
+      <button onclick="nextSection()">Next</button>
+    </section>
+
+    <section class="form-section">
+      <h2>How are you feeling emotionally?</h2>
+      <label for="phq">PHQ Score (0–27):</label>
+      <p style="font-size: 0.9rem; color: #ccc; margin-top: 0px;">
+        This helps us understand how often you've been feeling down, tired, or unmotivated lately. Optional.
+      </p>
+      <input id="phq" type="number" min="0" max="27" placeholder="e.g. 12 is middle on all, 14 is higher on some" />
+
+      <label for="gad">GAD Score (0–21):</label>
+      <p style="font-size: 0.9rem; color: #ccc; margin-top: 0px;">
+        This helps us understand how often you've been feeling anxious, restless, or overwhelmed. Optional.
+      </p>
+      <input id="gad" type="number" min="0" max="21" placeholder="e.g. 8 is quite okay." />
+
+      <label for="mood">Mood (–2 to +2)</label>
+      <select id="mood">
+        <option value="">Choose one</option>
+        <option value="-2">Very low mood</option>
+        <option value="-1">Low mood</option>
+        <option value="0">Neutral</option>
+        <option value="1">Positive</option>
+        <option value="2">Very positive</option>
+      </select>
+      <button onclick="nextSection()">Next</button>
+    </section>
+
+    <section class="form-section">
+      <h2>Let's check in physically.</h2>
+      <label for="pain">Pain Level (0–10)</label>
+      <input id="pain" type="range" min="0" max="10" />
+
+      <label for="sleep">Sleep (hours last night)</label>
+      <input id="sleep" type="number" placeholder="e.g. 6.5" />
+
+      <label for="energy">Energy level today (1–10)</label>
+      <input id="energy" type="range" min="1" max="10" />
+      <button onclick="nextSection()">Next</button>
+    </section>
+
+    <section class="form-section">
+      <h2>Cognitive check-in</h2>
+      <label for="focus">How focused do you feel today? (1–10)</label>
+      <input id="focus" type="range" min="1" max="10" />
+
+      <label for="fog">Are you feeling mentally foggy?</label>
+      <select id="fog">
+        <option value="">Choose one</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+      <button onclick="nextSection()">Next</button>
+    </section>
+
+    <section class="form-section">
+      <h2>Social check-in</h2>
+      <label for="contacts">How many people have you connected with this week?</label>
+      <input id="contacts" type="number" />
+
+      <label for="confidence">Do you feel comfortable reaching out to others?</label>
+      <select id="confidence">
+        <option value="">Choose one</option>
+        <option value="yes">Yes</option>
+        <option value="sometimes">Sometimes</option>
+        <option value="no">No</option>
+      </select>
+      <button onclick="nextSection()">Finish</button>
+    </section>
+
+    <section class="form-section">
+      <a href="/recovery-plan.html" class="transparent-button share-tech-regular" style = "justify-content: center; align-items: center;">Home</a>
+    </section>
+  </div>
+
+  <script>
+    let currentSection = 0;
+    const sections = document.querySelectorAll(".form-section");
+
+    function nextSection() {
+      sections[currentSection].classList.remove("show");
+      currentSection++;
+      if (sections[currentSection]) {
+        sections[currentSection].classList.add("show");
+        sections[currentSection].scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+
+    // Initialize if not already present
+    if (!localStorage.getItem("hephaestusUserData")) {
+      localStorage.setItem("hephaestusUserData", JSON.stringify({}));
+    }
+
+    function saveCurrentSectionData() {
+      const data = JSON.parse(localStorage.getItem("hephaestusUserData")) || {};
+
+      switch (currentSection) {
+        case 0:
+          data.lifeChange = document.getElementById("lifeChange").value;
+          data.impact = document.getElementById("impact").value;
+          break;
+        case 1:
+          data.goals = document.getElementById("goals").value;
+          break;
+        case 2:
+          data.phq = document.getElementById("phq").value;
+          data.gad = document.getElementById("gad").value;
+          data.mood = document.getElementById("mood").value;
+          break;
+        case 3:
+          data.pain = document.getElementById("pain").value;
+          data.sleep = document.getElementById("sleep").value;
+          data.energy = document.getElementById("energy").value;
+          break;
+        case 4:
+          data.focus = document.getElementById("focus").value;
+          data.fog = document.getElementById("fog").value;
+          break;
+        case 5:
+          data.contacts = document.getElementById("contacts").value;
+          data.confidence = document.getElementById("confidence").value;
+          break;
+      }
+
+      localStorage.setItem("hephaestusUserData", JSON.stringify(data));
+      
+    }
+    
+    
+  </script>
+</body>
+</html>

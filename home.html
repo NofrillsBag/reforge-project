@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/styles/coolpage.css">
+</head>
+<body>
+  <section style="position: relative; height: 100vh; overflow: hidden;">
+    <div>
+        <img src="/images/struggle-b-ghibilla-finshb.jpg" class="fullscreen-image" alt="Background Image">
+        
+        <div class="black-box animated-slideIn">
+            <div class="welcome-text">
+                <span class="overlay-text">Welcome</span><br>
+
+                <span class="overlay-text">"Back?"</span><br>
+                <div style="display: flex; justify-content: center; padding-top: 20px;">
+                    <a href="/about-you-form.html" class="transparent-button share-tech-regular" style = "margin-top: 100px;">Go to About Me</a>
+                </div>
+            </div>
+
+            <div class="caption-text">
+                <hr>
+                <span class="overlay-text small-font animated-bounce">Let's Get<br>"Back?" To The<br>Planning, Shall We?</span>
+            </div>
+        </div>
+   </div>
+   </section>
+        
+    <section class="content">
+        <hr class="white-hr"> <br>
+        <h1 class="normal-text share-tech-regular" style = "font-size: 50px; font-weight: bolder;">Our Recovery</h1>
+        
+    </section>
+
+    <script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.hidden-section').forEach(el => observer.observe(el));
+
+    </script>
+</body>
+</html>
